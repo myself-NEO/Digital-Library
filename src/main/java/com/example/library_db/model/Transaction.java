@@ -2,6 +2,7 @@ package com.example.library_db.model;
 
 import com.example.library_db.model.enums.TxnStatus;
 import com.example.library_db.model.enums.TxnType;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -37,10 +38,12 @@ public class Transaction {
 
     @ManyToOne
     @JoinColumn
+    @JsonIgnoreProperties("transactionList")
     private Book my_book;
 
     @ManyToOne
     @JoinColumn
+    @JsonIgnoreProperties("transactionList")
     private Student my_student;
 
     private Double fine;

@@ -1,6 +1,7 @@
 package com.example.library_db.model;
 
 import com.example.library_db.model.enums.Genre;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -30,10 +31,12 @@ public class Book {
 
     @ManyToOne
     @JoinColumn
+    @JsonIgnoreProperties("bookList")
     private Auther my_auther;
 
     @ManyToOne
     @JoinColumn
+    @JsonIgnoreProperties("bookList")
     private Student my_student;
 
     @CreationTimestamp
@@ -43,5 +46,6 @@ public class Book {
     private Date updatedOn;
 
     @OneToMany(mappedBy = "my_book")
+    @JsonIgnoreProperties("my_book")
     List<Transaction> transactionList;
 }
