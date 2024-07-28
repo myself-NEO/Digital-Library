@@ -2,10 +2,11 @@ package com.example.library_db.service;
 
 import com.example.library_db.dto.CreateBookRequest;
 import com.example.library_db.dto.SearchBookRequest;
-import com.example.library_db.model.Auther;
+import com.example.library_db.model.Author;
 import com.example.library_db.model.Book;
+import com.example.library_db.model.Student;
 import com.example.library_db.model.enums.Genre;
-import com.example.library_db.repository.AutherRepository;
+import com.example.library_db.repository.AuthorRepository;
 import com.example.library_db.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,15 +21,15 @@ public class BookService {
     BookRepository bookRepository;
 
     @Autowired
-    AutherRepository autherRepository;
+    AuthorRepository autherRepository;
 
     @Autowired
-    AutherService autherService;
+    AuthorService authorService;
 
     public Book create(CreateBookRequest createBookRequest) {
         Book book = createBookRequest.to();
-        Auther auther = autherService.createOrget(book.getMy_auther());
-        book.setMy_auther(auther);
+        Author author = authorService.createOrget(book.getMy_author());
+        book.setMy_author(author);
         return bookRepository.save(book);
     }
 
@@ -62,5 +63,13 @@ public class BookService {
             default:
                 throw new Exception("invalid search key");
         }
+    }
+
+    public void assignBookToStudent(Book book, Student student){
+        bookRepository.assignBookToStudent(book.getId(), student);
+    }
+
+    public void unassignBookFromStudent(Book book){
+        bookRepository.unassignBook(book.getId());
     }
 }
