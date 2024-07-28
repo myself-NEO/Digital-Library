@@ -1,6 +1,6 @@
 package com.example.library_db.dto;
 
-import com.example.library_db.model.Auther;
+import com.example.library_db.model.Author;
 import com.example.library_db.model.Book;
 import com.example.library_db.model.enums.Genre;
 import jakarta.validation.constraints.NotBlank;
@@ -30,7 +30,7 @@ public class CreateBookRequest {
                 .name(this.name)
                 .pages(this.pages)
                 .genre(this.genre)
-                .my_auther(Auther.builder().name(this.autherName).country(this.autherCountry).email(this.email).build())
+                .my_author(Author.builder().name(this.autherName).country(this.autherCountry).email(this.email).build())
                 .build();
     }
 }

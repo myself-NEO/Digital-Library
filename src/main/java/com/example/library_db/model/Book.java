@@ -32,7 +32,7 @@ public class Book {
     @ManyToOne
     @JoinColumn
     @JsonIgnoreProperties("bookList")
-    private Auther my_auther;
+    private Author my_author;
 
     @ManyToOne
     @JoinColumn
@@ -45,7 +45,7 @@ public class Book {
     @UpdateTimestamp
     private Date updatedOn;
 
-    @OneToMany(mappedBy = "my_book", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "book", fetch = FetchType.EAGER)
     @JsonIgnoreProperties("my_book")
     List<Transaction> transactionList;
 }

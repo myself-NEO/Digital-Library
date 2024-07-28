@@ -36,7 +36,7 @@ public class Student {
     @JsonIgnoreProperties("my_student")
     private List<Book> bookList;
 
-    @OneToMany(mappedBy = "my_student")
+    @OneToMany(mappedBy = "student")
     @JsonIgnoreProperties("my_student")
     private List<Transaction> transactionList;
 
